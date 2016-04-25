@@ -1,0 +1,96 @@
+<div class="container-fluid">
+    <main>
+        <div class="col-md-6">
+            <form action="#" method="post" class="form-horizontal">
+                <fieldset>
+                    <legend class="hidden-sm hidden-xs">Média</legend>
+                    <div class="form-group">
+                        <label for="title" class="control-label col-md-2 col-md-offset-2 hidden-xs">Titre</label>
+                        <div class="col-md-7">
+                            <input data-ng-model="mediaCtrl.media.titre" type="text" name="title" id="title" placeholder="Titre" value="Titre" class="form-control"  data-ng-show="edit" data-ng-required="true">
+                            <label class="control-label" ng-bind="mediaCtrl.media.titre" ng-show="!edit"></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="author" class="control-label col-md-2 col-md-offset-2 hidden-xs">Auteur</label>
+                        <div class="col-md-7">
+                            <input data-ng-model="mediaCtrl.media.auteur" type="text" name="author" id="author" placeholder="Auteur" value="Auteur" class="form-control"  data-ng-show="edit" data-ng-required="true">
+                            <label class="control-label" data-ng-bind="mediaCtrl.media.auteur" data-ng-show="!edit"></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-md-offset-2 hidden-xs">Type</label>
+                        <div class="col-md-7">
+                            <select data-ng-model="mediaCtrl.media.type" name="type" class="form-control" data-ng-show="edit">
+                                <option value="Livre">Livre</option>
+                                <option value="CD">CD</option>
+                                <option value="DVD">DVD</option>
+                            </select>
+                            <label class="control-label" data-ng-bind="mediaCtrl.media.type" data-ng-show="!edit"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-offset-10"  data-ng-show="!edit">
+                        <button type="button" class="btn btn-success" data-ng-click="edit=true">Éditer</button>
+                    </div>
+                    <div class="col-md-offset-8"  data-ng-show="edit">
+                        <button type="button" class="btn btn-success"  data-ng-click="edit=false; mediaCtrl.editMedia()">Modifier</button>
+                        <button type="button" class="btn btn-danger" data-ng-click="edit = false">Annuler</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class=" row col-md-6 dataTable">
+            <table class="table table-condensed table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th><span class="glyphicon glyphicon-export" aria-hidden="true"></span></th>
+                        <th><span class="glyphicon glyphicon-import" aria-hidden="true"></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-show="mediaCtrl.emprunteursTotaux.length == 0">
+                        <td colspan="3">Pas d'emprunt</td>
+                    </tr>
+                    <tr ng-repeat="emprunteur in mediaCtrl.emprunteurs">
+                        <td ng-bind="emprunteur.adherent.prenom + ' ' + emprunteur.adherent.nom"></td>
+                        <td ng-bind="emprunteur.depart | date:'dd / MM / yyyy'"></td>
+                        <td ng-bind="emprunteur.retour | date:'dd / MM / yyyy'"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="paginate">
+	            <ul class="pagination" ng-hide="mediaCtrl.emprunteursTotaux.length == 0">
+	                <li>
+	                    <a ng-click="mediaCtrl.changePageEmprunt(mediaCtrl.pageEmprunt - 1)" aria-label="Previous">
+	                        <span aria-hidden="true">&laquo;</span>
+	                    </a>
+	                </li>
+	                <li ng-repeat="pageEmprunt in mediaCtrl.pagesEmpruntPossibles" ng-class="{active:pageEmprunt==mediaCtrl.pageEmprunt}"><a ng-click="mediaCtrl.changePageEmprunt(pageEmprunt)" ng-bind="pageEmprunt + 1"></a></li>
+	                <li>
+	                    <a ng-click="mediaCtrl.changePageEmprunt(mediaCtrl.pageEmprunt + 1)" aria-label="Next">
+	                        <span aria-hidden="true">&raquo;</span>
+	                    </a>
+	                </li> 
+	            </ul>
+	        </div>
+            <form class="form-inline" ng-submit="mediaCtrl.addEmprunteur()">
+                <fieldset>
+                    <!-- <legend>title or explanatory caption</legend> -->
+                    <div class="form-group">
+                        <label class="hidden-xs hidden-sm hidden-md">Nom</label>
+                        <select class="form-control" 
+                                ng-model="mediaCtrl.ajout.selected"
+                                ng-options="adherent as adherent.nom +  ' ' +  adherent.prenom  for adherent in mediaCtrl.adherentsActifs">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date" class="hidden-xs hidden-sm hidden-md">Emprunt</label>
+                        <input type="date" ng-model="mediaCtrl.ajout.date" id="date" class="form-control startDate" required>
+                    </div>
+                    <input type="submit" name="submit" value="Ajouter" class="btn btn-success">
+                </fieldset>
+            </form>
+        </div>
+    </main>
+</div>

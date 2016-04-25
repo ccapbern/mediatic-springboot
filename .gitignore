@@ -1,0 +1,14 @@
+# Project
+node_modules/
+app/bower_components/
+*.log
+
+# Eclipse specific
+/target/
+.classpath
+.project
+.settings
+
+# Netbeans specific
+/bin/
+/nbproject/

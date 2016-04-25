@@ -1,0 +1,30 @@
+﻿<main class="reduce">
+    <form method="post" class="form-horizontal" ng-submit="mediaCtrl.addMedia()">
+        <fieldset>
+            <legend class="hidden-sm hidden-xs">Ajouter un media</legend>
+            <div class="form-group">
+                <label for="title" class="control-label col-md-2 col-md-offset-2 hidden-xs">Titre</label>
+                <div class="col-md-5">
+                    <input data-ng-model="mediaCtrl.ajout.titre" type="text" id="title" placeholder="Titre" class="form-control" data-ng-required="true">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="author" class="control-label col-md-2 col-md-offset-2 hidden-xs">Auteur</label>
+                <div class="col-md-5">
+                    <input data-ng-model="mediaCtrl.ajout.auteur" type="text" id="author" placeholder="Auteur" class="form-control" data-ng-required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2 col-md-offset-2 hidden-xs">Type</label>
+                <div class="col-md-5">
+                    <select data-ng-model="mediaCtrl.ajout.type" class="form-control">
+                        <option value="Livre">Livre</option>
+                        <option value="CD">CD</option>
+                        <option value="DVD">DVD</option>
+                    </select>
+                </div>
+            </div>
+            <input type="submit" name="submit" value="Enregistrer" class="btn btn-success col-md-offset-10">
+        </fieldset>
+    </form>
+</main>

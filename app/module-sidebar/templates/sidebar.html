@@ -1,0 +1,58 @@
+﻿<div data-ng-controller="SidebarController as sidebarCtrl">
+    <div class="sidebox" ng-class="{sidebox_open : sidebarCtrl.open}">
+        <button data-ng-click="sidebarCtrl.open = !sidebarCtrl.open"><span class="glyphicon glyphicon-search"></span></button>
+
+        <!--Premier form-->
+        <!--<fieldset>-->
+        
+            <form class="form-horizontal formsidebox" data-ng-submit="sidebarCtrl.submitMedia()" data-ng-if="sidebarCtrl.isMediaActif()">
+                <div><h2>Recherche de Media</h2></div>
+                <input type="button" name="Nouveau" data-ng-click="sidebarCtrl.goMediaCreate()" value="Nouveau" class="btn btn-primary divinput">
+                <div class="form-group">
+                    <label for="title" class="control-label col-md-1 hidden-xs">Titre</label>
+                    <div class="divinput col-sm-12">
+                        <input type="text" name="title" data-ng-model="sidebarCtrl.title" id="title" placeholder="Titre" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="author" class="control-label col-md-1 hidden-xs">Auteur</label>
+                    <div class="divinput col-sm-12">
+                        <input type="text" name="author" data-ng-model="sidebarCtrl.author" id="author" placeholder="Auteur" class="form-control">
+                    </div>
+                </div>
+                <!--liste deroulante-->
+                <div class="form-group">                 
+                    <label class="control-label col-md-1 hidden-xs">Type</label>
+                    <div class="divinput col-sm-12 ">
+                        <select name="type" data-ng-model="sidebarCtrl.type" class="form-control">
+                            <option value=""></option>
+                            <option value="Livre">Livre</option>
+                            <option value="CD">CD</option>
+                            <option value="DVD">DVD</option>
+                        </select>
+                    </div>
+                </div>
+                <input type="submit" name="submit" value="Recherche" class="btn btn-success">
+            </form>
+        <!--</fieldset>-->
+        <!--Deuxieme form-->
+
+        <form class="form-horizontal formsidebox" data-ng-submit="sidebarCtrl.submitAdherent()" data-ng-if="sidebarCtrl.isAdherentActif()">
+            <div><h2>Recherche d'Adhérents</h2></div>
+            <input type="button" name="Nouveau" data-ng-click="sidebarCtrl.goAdherentCreate()" value="Nouveau" class="btn btn-primary divinput">
+            <div class="form-group">
+                <label for="name" class="control-label col-md-1 hidden-xs">Nom</label>
+                <div class="divinput col-sm-12">
+                    <input type="text" name="nom" data-ng-model="sidebarCtrl.nom" id="nom" placeholder="Nom" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="prenom" class="control-label col-md-1 hidden-xs">Prenom</label>
+                <div class="divinput col-sm-12">
+                    <input type="text" name="prenom" data-ng-model="sidebarCtrl.prenom" id="prenom" placeholder="Prenom" class="form-control">
+                </div>
+            </div>
+            <input type="submit" name="submit" value="Recherche" class="btn btn-success">
+        </form>
+    </div>
+</div>

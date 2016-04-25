@@ -1,0 +1,24 @@
+﻿<div class="container-fluid" data-ng-controller="LoginController as loginCtrl">
+    <div class="row">
+        <main class="reduce">
+            <form method="post" class="form-horizontal" data-ng-submit="loginCtrl.login()">
+                <fieldset>
+                    <legend class="hidden-sm hidden-xs">Connexion</legend>
+                    <div class="form-group">
+                        <label for="login" class="control-label col-md-2 col-md-offset-2 hidden-xs">Login</label>
+                        <div class="col-md-5">
+                            <input type="text" data-ng-model="loginCtrl.connexion.login" id="login" placeholder="Login" class="form-control" data-ng-required="true">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label col-md-2 col-md-offset-2 hidden-xs">Password</label>
+                        <div class="col-md-5">
+                            <input type="password" data-ng-model="loginCtrl.connexion.password" id="password" placeholder="Password" class="form-control" data-ng-required="true">
+                        </div>
+                    </div>
+                    <input type="submit" name="submit" value="Connexion" class="btn btn-success col-md-offset-10">
+                </fieldset>
+            </form>
+        </main>
+    </div>
+</div>

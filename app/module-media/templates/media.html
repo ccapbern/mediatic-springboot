@@ -1,0 +1,39 @@
+﻿<div class="container-fluid">
+    <main class="reduce">
+        <table class="table table-condensed table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th data-ng-click="mediaCtrl.triMedia('titre')">Titre</th>
+                    <th data-ng-click="mediaCtrl.triMedia('auteur')">Auteur</th>
+                    <th>Emprunteur</th>
+                    <th>Retour</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="media in mediaCtrl.getMedias()" data-ng-click="mediaCtrl.showMedia(media.id)">
+                    <td data-my-type="media.type"></td>
+                    <td data-ng-bind="media.titre"></td>
+                    <td data-ng-bind="media.auteur"></td>
+                    <td data-ng-bind="media.emprunteur.nom + ' ' + media.emprunteur.prenom"></td>
+                    <td data-ng-bind="media.retour | date:'dd/MM/yyyy'"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="paginate">
+            <ul class="pagination">
+                <li>
+                    <a data-ng-click="mediaCtrl.changePage(mediaCtrl.page - 1)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li data-ng-repeat="page in mediaCtrl.pagesPossibles" data-ng-class="{active:page==mediaCtrl.page}"><a data-ng-click="mediaCtrl.changePage(page)" data-ng-bind="page + 1"></a></li>
+                <li>
+                    <a data-ng-click="mediaCtrl.changePage(mediaCtrl.page + 1)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </main>
+</div>
