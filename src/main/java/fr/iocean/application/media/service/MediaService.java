@@ -27,25 +27,20 @@ public class MediaService {
 		return mediaRepository.findOne(id);
 	}
 	
-	public List<Media> findByAuthor(String author){
-		return mediaRepository.findByAuthor(author);
-	}
-	
-	public List<Media> findByTitle(String title){
-		return mediaRepository.findByAuthor(title);
-	}
-	
 	public void update(Long id, Media media){
 		if(findById(id) != null){
 			mediaRepository.save(media);
 		} else {
 			throw new MediaNotFoundException();
 		}
-		
 	}
 	
-	public void delete(Media media){
-		mediaRepository.delete(media);
+	public void delete(Long id, Media media){
+		if(findById(id) != null){
+			mediaRepository.delete(media);
+		} else {
+			throw new MediaNotFoundException();
+		}
 	}
 	
 }

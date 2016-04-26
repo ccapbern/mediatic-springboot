@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -23,13 +25,19 @@ public class Media {
     @SequenceGenerator(name = "media_id_sequence", sequenceName = "media_id_sequence", allocationSize = 1)
     @GeneratedValue(generator = "media_id_sequence")
     private Long id;
+    
     @NotBlank
     private String title;
+    
     @NotBlank
     private String author;
+    
+//    @NotNull
+//    @ManyToOne
+//    @JoinColumn(name = "type_id")
+//    private Type type;
+    
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "type_id")
-    private Type type;
-
+    private Long type;
+    
 }
