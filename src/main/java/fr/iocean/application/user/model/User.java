@@ -22,8 +22,7 @@ public class User implements IoEntity {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name = "users_id_sequence", sequenceName = "users_id_sequence", allocationSize = 1)
-    @GeneratedValue(generator = "users_id_sequence")
+    @GeneratedValue
     private Long id;
     @NotBlank
     private String login;

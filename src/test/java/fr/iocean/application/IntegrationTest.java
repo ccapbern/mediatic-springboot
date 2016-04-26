@@ -29,6 +29,7 @@ import fr.iocean.application.helper.JsonHelper;
 @SpringApplicationConfiguration(classes = FilRougeApplication.class)
 @WebAppConfiguration
 @TestPropertySource("classpath:application.properties")
+@Transactional
 public abstract class IntegrationTest {
 
     @Autowired
