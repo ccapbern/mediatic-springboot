@@ -1,7 +1,7 @@
 package fr.iocean.application.borrow.model;
 
 import fr.iocean.application.medias.model.Medias;
-import fr.iocean.application.members.model.Members;
+import fr.iocean.application.member.model.Member;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,7 +19,7 @@ public class Borrow implements Serializable {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Members member;
+    private Member member;
     @NotNull
     @ManyToOne
     @JoinColumn(name = "media_id")
@@ -40,14 +40,14 @@ public class Borrow implements Serializable {
     /**
      * @return the member_id
      */
-    public Members getMember() {
+    public Member getMember() {
         return member;
     }
 
     /**
      * @param member the member_id to set
      */
-    public void setMember(Members member) {
+    public void setMember(Member member) {
         this.member = member;
     }
 
