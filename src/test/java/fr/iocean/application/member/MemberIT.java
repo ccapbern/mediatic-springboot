@@ -41,15 +41,15 @@ public class MemberIT extends IntegrationTest {
         m.setCity("Kaamelott");
 
 
-        this.mockMvc.perform(post("/api/member").contentType(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
+        this.mockMvc.perform(post("/api/members").contentType(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
                 .content(jsonHelper.serialize(m))).andExpect(status().isCreated());
-        this.mockMvc.perform(get("/api/member")).andDo(MockMvcResultHandlers.print())
+        this.mockMvc.perform(get("/api/members")).andDo(MockMvcResultHandlers.print())
                 .andExpect(jsonPath("$", hasSize(1))).andExpect(status().isOk());
     }
 
     @Test
     public void testFindOne() throws Exception {
-        this.mockMvc.perform(get("/api/member/1")).andDo(MockMvcResultHandlers.print())
+        this.mockMvc.perform(get("/api/members/1")).andDo(MockMvcResultHandlers.print())
                 .andExpect(jsonPath("$").value("coco")).andExpect(status().isOk());
     }
 
@@ -58,10 +58,22 @@ public class MemberIT extends IntegrationTest {
         Member m = memberService.findOne(1L);
         m.setFirstname("toto");
 
-        this.mockMvc.perform(put("/api/member/1").contentType(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
+        this.mockMvc.perform(put("/api/members/1").contentType(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
                 .content(jsonHelper.serialize(m))).andExpect(status().isOk());
-        this.mockMvc.perform(get("/api/member/1")).andDo(MockMvcResultHandlers.print())
+        this.mockMvc.perform(get("/api/members/1")).andDo(MockMvcResultHandlers.print())
                 .andExpect(jsonPath("$.firstname").value("toto")).andExpect(status().isOk());
+    }
+
+    @Test
+    public void testFindAll() throws Exception {
+        this.mockMvc.perform(get("/api/members/")).andDo(MockMvcResultHandlers.print())
+                .andExpect(jsonPath("$", hasSize(1)));
+    }
+
+    @Test
+    public void findOneNotFound() throws Exception {
+        this.mockMvc.perform(get("/api/members/999")).andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isNotFound());
     }
 
 //	@Test
