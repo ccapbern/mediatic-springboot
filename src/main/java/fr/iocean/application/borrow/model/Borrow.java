@@ -1,6 +1,6 @@
 package fr.iocean.application.borrow.model;
 
-import fr.iocean.application.medias.model.Medias;
+import fr.iocean.application.media.model.Media;
 import fr.iocean.application.members.model.Members;
 
 import javax.persistence.*;
@@ -23,7 +23,7 @@ public class Borrow implements Serializable {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "media_id")
-    private Medias media;
+    private Media media;
     @NotNull
     @Temporal(TemporalType.DATE)
     private Date borrowing_date;
@@ -54,14 +54,14 @@ public class Borrow implements Serializable {
     /**
      * @return the media_id
      */
-    public Medias getMedia() {
+    public Media getMedia() {
         return media;
     }
 
     /**
      * @param media the member_id to set
      */
-    public void setMedia(Medias media) {
+    public void setMedia(Media media) {
         this.media = media;
     }
 

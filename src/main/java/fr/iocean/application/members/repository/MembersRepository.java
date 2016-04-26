@@ -1,10 +1,13 @@
 package fr.iocean.application.members.repository;
 
-import fr.iocean.application.helpers.DatabaseHelper;
-import fr.iocean.application.members.model.Members;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+
+import fr.iocean.application.helpers.DatabaseHelper;
+import fr.iocean.application.media.model.Media;
+import fr.iocean.application.members.model.Members;
 
 public class MembersRepository {
 
@@ -74,7 +77,7 @@ public class MembersRepository {
         return query.getResultList();
     }
 
-    public List<Medias> getAllMedias(Members member) {
+    public List<Media> getAllMedias(Members member) {
         String sql = "select me "
                 + "from Members m "
                 + "join m.borrow b "
@@ -82,7 +85,7 @@ public class MembersRepository {
                 + "where m.id=:id";
         EntityManager entityManager = DatabaseHelper.createEntityManager();
 
-        TypedQuery query = entityManager.createQuery(sql, Medias.class);
+        TypedQuery query = entityManager.createQuery(sql, Media.class);
         query.setParameter("id", member.getId());
 
         return query.getResultList();
