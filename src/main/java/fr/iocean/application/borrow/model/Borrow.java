@@ -1,25 +1,36 @@
 package fr.iocean.application.borrow.model;
 
-import fr.iocean.application.media.model.Media;
-import fr.iocean.application.members.model.Members;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import fr.iocean.application.media.model.Media;
+import fr.iocean.application.member.model.Member;
 
 @Entity
 @Table(name = "borrow")
 public class Borrow implements Serializable {
 
-    @Id
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @SequenceGenerator(name = "borrow_id_sequence", sequenceName = "borrow_id_sequence", allocationSize = 1)
     @GeneratedValue(generator = "borrow_id_sequence")
     private Long id;
     @NotNull
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Members member;
+    private Member member;
     @NotNull
     @ManyToOne
     @JoinColumn(name = "media_id")
@@ -40,14 +51,14 @@ public class Borrow implements Serializable {
     /**
      * @return the member_id
      */
-    public Members getMember() {
+    public Member getMember() {
         return member;
     }
 
     /**
      * @param member the member_id to set
      */
-    public void setMember(Members member) {
+    public void setMember(Member member) {
         this.member = member;
     }
 

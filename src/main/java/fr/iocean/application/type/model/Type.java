@@ -1,5 +1,6 @@
 package fr.iocean.application.type.model;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
@@ -9,9 +10,11 @@ import fr.iocean.application.media.model.Media;
 
 @Entity
 @Table(name = "types")
-public class Type {
-
-    @Id
+public class Type implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
     @SequenceGenerator(name = "type_id_sequence", sequenceName = "type_id_sequence", allocationSize = 1)
     @GeneratedValue(generator = "type_id_sequence")
     private Long id;
