@@ -1,10 +1,13 @@
 package fr.iocean.application.members.repository;
 
-import fr.iocean.application.helpers.DatabaseHelper;
-import fr.iocean.application.members.model.Members;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+
+import fr.iocean.application.helpers.DatabaseHelper;
+import fr.iocean.application.medias.model.Medias;
+import fr.iocean.application.members.model.Members;
 
 public class MembersRepository {
 

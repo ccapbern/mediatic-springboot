@@ -1,35 +1,33 @@
 package fr.iocean.application.repository;
 
-import java.util.List;
+import fr.iocean.application.persistence.IoEntity;
+import org.hibernate.Session;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-
-import org.hibernate.Session;
-
-import fr.iocean.application.persistence.IoEntity;
+import java.util.List;
 
 public abstract class AbstractJpaRepository<T extends IoEntity> {
 
-    protected Class<T> entityClass;
+	protected Class<T> entityClass;
+	
+	@PersistenceContext
+	EntityManager em;
 
-    @PersistenceContext
-    private EntityManager em;
-
-    @PostConstruct
+	@PostConstruct
     public void init() {
         entityClass = getEntityClass();
     }
+	
+	protected abstract Class<T> getEntityClass();
+	
+	protected Session getSession() {
+		return em.unwrap(Session.class);
+	}
 
-    protected abstract Class<T> getEntityClass();
-
-    protected Session getSession() {
-        return em.unwrap(Session.class);
-    }
-
-    @Transactional
+	@Transactional
     public T save(T entity) {
         if (isNew(entity)) {
             em.persist(entity);
@@ -45,13 +43,13 @@ public abstract class AbstractJpaRepository<T extends IoEntity> {
     public T findOne(Long id) {
         return em.find(entityClass, id);
     }
-
+	
     @SuppressWarnings("unchecked")
     @Transactional
     public List<T> findAll() {
         return getSession().createCriteria(entityClass).list();
     }
-
+	
     @Transactional
     public void delete(T entity) {
         if (!getSession().contains(entity)) {
@@ -62,8 +60,8 @@ public abstract class AbstractJpaRepository<T extends IoEntity> {
 
     }
 
-    private boolean isNew(T entity) {
+	public boolean isNew(T entity) {
         return entity.getId() == null;
     }
-
+	
 }
