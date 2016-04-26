@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
-import fr.iocean.application.medias.model.Medias;
 import org.hibernate.validator.constraints.NotBlank;
+
+import fr.iocean.application.media.model.Media;
 
 @Entity
 @Table(name = "types")
@@ -20,7 +21,7 @@ public class Type implements Serializable {
     @NotBlank
     private String name;
     @OneToMany(mappedBy = "type")
-    private List<Medias> medias;
+    private List<Media> medias;
 
     public Type() {
 
@@ -50,7 +51,7 @@ public class Type implements Serializable {
     /**
      * @return the medias
      */
-    public List<Medias> getMedias() {
+    public List<Media> getMedias() {
         return medias;
     }
 }
