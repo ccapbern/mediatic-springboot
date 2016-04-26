@@ -12,7 +12,9 @@ import java.util.Date;
 @Table(name = "borrow")
 public class Borrow implements Serializable {
 
-    @Id
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @SequenceGenerator(name = "borrow_id_sequence", sequenceName = "borrow_id_sequence", allocationSize = 1)
     @GeneratedValue(generator = "borrow_id_sequence")
     private Long id;
