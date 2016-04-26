@@ -11,9 +11,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import java.text.SimpleDateFormat;
 
 import static org.hamcrest.Matchers.hasSize;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -33,6 +31,7 @@ public class MemberIT extends IntegrationTest {
     public void testCreate() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         Member m = new Member();
+        m.setId(-2L);
         m.setFirstname("coco");
         m.setLastname("l asticot");
         m.setDob(sdf.parse("2001/10/05"));
@@ -44,25 +43,15 @@ public class MemberIT extends IntegrationTest {
         this.mockMvc.perform(post("/api/members").contentType(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
                 .content(jsonHelper.serialize(m))).andExpect(status().isCreated());
         this.mockMvc.perform(get("/api/members")).andDo(MockMvcResultHandlers.print())
-                .andExpect(jsonPath("$", hasSize(1))).andExpect(status().isOk());
+                .andExpect(jsonPath("$", hasSize(2))).andExpect(status().isOk());
     }
 
     @Test
     public void testFindOne() throws Exception {
         this.mockMvc.perform(get("/api/members/1")).andDo(MockMvcResultHandlers.print())
-                .andExpect(jsonPath("$").value("coco")).andExpect(status().isOk());
-    }
-
-    @Test
-    public void testUpdate() throws Exception {
-        Member m = memberService.findOne(1L);
-        m.setFirstname("toto");
-
-        this.mockMvc.perform(put("/api/members/1").contentType(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
-                .content(jsonHelper.serialize(m))).andExpect(status().isOk());
-        this.mockMvc.perform(get("/api/members/1")).andDo(MockMvcResultHandlers.print())
                 .andExpect(jsonPath("$.firstname").value("toto")).andExpect(status().isOk());
     }
+
 
     @Test
     public void testFindAll() throws Exception {
@@ -76,27 +65,46 @@ public class MemberIT extends IntegrationTest {
                 .andExpect(status().isNotFound());
     }
 
-//	@Test
-//	public void testDelete() throws Exception {
-//		User u = userService.findOne(1L);
-////MarchePOOO
-//		this.mockMvc.perform(delete("/api/users").contentType(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
-//				.content(jsonHelper.serialize(u))).andExpect(status().isOk());
-//		this.mockMvc.perform(get("/api/users")).andDo(MockMvcResultHandlers.print())
-//				.andExpect(jsonPath("$", hasSize(4))).andExpect(status().isOk());
-//	}
+	@Test
+	public void testDelete() throws Exception {
+		Member m = memberService.findOne(-1L);
+		this.mockMvc.perform(delete("/api/members/-1").contentType(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
+				.content(jsonHelper.serialize(m))).andExpect(status().isOk());
+		this.mockMvc.perform(get("/api/members")).andDo(MockMvcResultHandlers.print())
+				.andExpect(jsonPath("$", hasSize(0))).andExpect(status().isOk());
+	}
 
-//    @Test
-//    public void testPreconditionFailed() throws Exception {
-//        Member u = new Member();
-//
-//        this.mockMvc
-//                .perform(post("/api/users/").contentType(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
-//                        .content(jsonHelper.serialize(u)))
-//                .andDo(MockMvcResultHandlers.print())
-//                .andExpect(jsonPath("$[*].field", Matchers.containsInAnyOrder("password", "login")))
-//                .andExpect(jsonPath("$[0].objectName").value("user"))
-//                .andExpect(jsonPath("$[*].code", Matchers.containsInAnyOrder("NotBlank", "NotBlank")))
-//                .andExpect(status().isPreconditionFailed());
-//    }
+    @Test
+    public void testUpdate() throws Exception {
+        Member m = memberService.findOne(-1L);
+        m.setFirstname("lolo");
+
+        this.mockMvc.perform(put("/api/members/-1").contentType(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
+                .content(jsonHelper.serialize(m))).andExpect(status().isOk());
+        this.mockMvc.perform(get("/api/members/-1")).andDo(MockMvcResultHandlers.print())
+                .andExpect(jsonPath("$.firstname").value("lolo")).andExpect(status().isOk());
+    }
+    @Test
+    public void testPreconditionFailed() throws Exception {
+        Member m = memberService.findOne(-1L);
+        m.setLastname("");
+
+        this.mockMvc
+                .perform(put("/api/members/-1").contentType(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
+                        .content(jsonHelper.serialize(m)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isPreconditionFailed());
+    }
+
+    @Test
+    public void testCreatePreconditionFailed() throws Exception {
+        Member m = new Member();
+
+        this.mockMvc
+                .perform(post("/api/members").contentType(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
+                        .content(jsonHelper.serialize(m)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isPreconditionFailed());
+    }
+
 }

@@ -49,15 +49,14 @@ public class Member implements IoEntity {
     private Date subscription_date;
     private Integer subscription_amount;
 
-//    @JsonIgnoreProperties({"member", "hibernateLazyInitializer", "handler"})
-//    @OneToMany(mappedBy = "member")
-//    private List<Borrow> borrow;
-
     @Transient
     private Integer age;
 
     public Integer getAge() {
         age = 0;
+        if (this.dob == null) {
+            return age;
+        }
         Calendar birth = CalendarUtil.getCalendar(this.dob);
         Calendar now = CalendarUtil.getCalendar(new Date());
 

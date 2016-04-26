@@ -29,9 +29,4 @@ public class MemberService {
 	public void delete(Member member){
 		memRep.delete(member);
 	}
-
-	public void update(Member member){
-		memRep.save(member);
-	}
-
 }
