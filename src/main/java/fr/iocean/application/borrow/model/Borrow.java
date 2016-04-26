@@ -27,17 +27,21 @@ public class Borrow implements Serializable {
     @SequenceGenerator(name = "borrow_id_sequence", sequenceName = "borrow_id_sequence", allocationSize = 1)
     @GeneratedValue(generator = "borrow_id_sequence")
     private Long id;
+
     @NotNull
     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
+
     @NotNull
     @ManyToOne
     @JoinColumn(name = "media_id")
     private Media media;
+
     @NotNull
     @Temporal(TemporalType.DATE)
     private Date borrowing_date;
+
     @Temporal(TemporalType.DATE)
     private Date return_date;
 

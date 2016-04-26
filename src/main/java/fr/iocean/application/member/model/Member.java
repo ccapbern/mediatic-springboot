@@ -1,5 +1,7 @@
 package fr.iocean.application.member.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import fr.iocean.application.borrow.model.Borrow;
 import fr.iocean.application.persistence.IoEntity;
 import fr.iocean.application.utils.CalendarUtil;
@@ -27,27 +29,34 @@ public class Member implements IoEntity {
     @SequenceGenerator(name = "member_id_sequence", sequenceName = "member_id_sequence", allocationSize = 1)
     @GeneratedValue(generator = "member_id_sequence")
     private Long id;
+
     @NotBlank
     private String lastname;
+
     @NotBlank
     private String firstname;
+
     @NotNull
     @Temporal(TemporalType.DATE)
     private Date dob;
+
     @NotBlank
     private String email;
     private String address;
     private String city;
+
     @Temporal(TemporalType.DATE)
     private Date subscription_date;
     private Integer subscription_amount;
-    @OneToMany(mappedBy = "member")
-    private List<Borrow> borrow;
+
     @Transient
     private Integer age;
 
     public Integer getAge() {
         age = 0;
+        if (this.dob == null) {
+            return age;
+        }
         Calendar birth = CalendarUtil.getCalendar(this.dob);
         Calendar now = CalendarUtil.getCalendar(new Date());
 
