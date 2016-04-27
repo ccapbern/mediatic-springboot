@@ -6,6 +6,8 @@ import javax.persistence.*;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import fr.iocean.application.media.model.Media;
 
 @Entity
@@ -20,8 +22,6 @@ public class Type implements Serializable {
     private Long id;
     @NotBlank
     private String name;
-    @OneToMany(mappedBy = "type")
-    private List<Media> medias;
 
     public Type() {
 
@@ -48,10 +48,4 @@ public class Type implements Serializable {
         this.name = name;
     }
 
-    /**
-     * @return the medias
-     */
-    public List<Media> getMedias() {
-        return medias;
-    }
 }
