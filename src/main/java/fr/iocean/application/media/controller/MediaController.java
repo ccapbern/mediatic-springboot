@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +27,12 @@ public class MediaController {
 	public Media findById(@PathVariable Long id) {
 		return mediaService.findById(id);
 	}
-
+	
+	@RequestMapping(value = "{page}", method = RequestMethod.GET)
+	public Page<Media> findPage(@PathVariable int page) {
+		return mediaService.findAll(page);
+	}
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Media> findAll() {
 		return mediaService.findAll();

@@ -1,0 +1,86 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <main class="reduce">
+            <form method="post" data-ng-submit="adherentCtrl.addAdherent()" class="form-horizontal">
+                <fieldset>
+                    <legend class="hidden-sm hidden-xs">Création d'un adhérent</legend>
+
+                    <div class="form-group">
+                        <label for="name" class="control-label col-md-2 col-md-offset-2 hidden-xs">Nom</label>
+                        <div class="col-md-5">
+                            <input type="text" name="name" id="name" placeholder="Nom" class="form-control" data-ng-required="true">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateofbirth" class="control-label col-sm-2 col-md-2 col-md-offset-2 hidden-xs">Date de naissance</label>
+                        <div class="col-xs-6 col-sm-4 col-md-2">
+                            <input type="date" data-ng-model="adherentCtrl.adherent.date_naissance" id="dateofbirth" class="form-control" data-ng-required="true">
+                        </div>
+
+                        <label for="age" class="control-label col-sm-2 col-md-1 hidden-xs">Âge</label>
+                        <div class="col-xs-6 col-sm-4 col-md-2">
+                            <input type="text" name="age" id="age" class="form-control" data-ng-disabled="true">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mail" class="control-label col-md-2 col-md-offset-2 hidden-xs">Email</label>
+                        <div class="col-md-5">
+                            <input type="email" data-ng-model="adherentCtrl.adherent.email" id="mail" placeholder="user@example.com" class="form-control" data-ng-required="true">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adress" class="control-label col-md-2 col-md-offset-2 hidden-xs">Adresse</label>
+                        <div class="col-md-5">
+                            <input type="text" data-ng-model="adherentCtrl.adherent.adresse.ligne1" id="adress" placeholder="Adresse 1" class="form-control" >
+                            <input type="text" data-ng-model="adherentCtrl.adherent.adresse.ligne2" id="adress2" placeholder="Adresse 2" class="form-control" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div>
+                            <label for="cp" class="control-label col-sm-2 col-md-2 col-md-offset-2 hidden-xs">CP</label>
+                            <div class="col-xs-6 col-sm-4 col-md-2">
+                                <input type="text" data-ng-model="adherentCtrl.adherent.adresse.codepostal" id="cp" placeholder="CP" class="form-control" >
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="city" class="control-label col-sm-2 col-md-1 hidden-xs">Ville</label>
+                            <div class="col-xs-6 col-sm-4 col-md-2">
+                                <input type="text" data-ng-model="adherentCtrl.adherent.adresse.ville" id="city" placeholder="Ville" class="form-control" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div>
+                            <label for="cotisation" class="control-label col-sm-2 col-md-2 col-md-offset-2 hidden-xs">Cotisation</label>
+                            <div class="col-xs-6 col-sm-4 col-md-2">
+                                <input type="date" data-ng-model="adherentCtrl.adherent.cotisation.debut" id="cotisation" class="form-control" >
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="fincotisation" class="control-label col-sm-2 col-md-1 hidden-xs">Date fin</label>
+                            <div class="col-xs-6 col-sm-4 col-md-2">
+                                <input type="date" data-ng-model="adherentCtrl.adherent.cotisation.fin" id="fincotisation" class="form-control" data-ng-disabled="true">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cost" class="control-label col-md-2 col-md-offset-2 hidden-xs">Montant</label>
+                        <div class="col-md-5">
+                            <input type="text" data-ng-model="adherentCtrl.adherent.cotisation.montant" id="cost" placeholder="Montant" class="form-control" >
+                        </div>
+                    </div>
+
+                    <input type="submit" name="submit" value="Enregistrer" class="btn btn-success col-md-offset-10">
+                </fieldset>
+            </form>
+        </main>
+    </div>
+</div>

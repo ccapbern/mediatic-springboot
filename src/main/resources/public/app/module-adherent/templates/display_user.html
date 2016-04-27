@@ -1,0 +1,157 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <form action="#" method="post" class="form-horizontal">
+                    <fieldset>
+                        <legend class="hidden-sm hidden-xs">Adhérent</legend>
+
+                        <div class="form-group">
+                            <label for="name" class="control-label col-md-2 col-md-offset-2 hidden-xs">Nom</label>
+                            <div class="col-md-7">
+                                <input data-ng-show="edit" type="text" data-ng-model="adherentCtrl.adherent.nom" id="name" placeholder="Nom" class="form-control" data-ng-required="true">
+                                <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.prenom + ' ' + adherentCtrl.adherent.nom" class="control-label"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateofbirth" class="control-label col-sm-2 col-md-2 col-md-offset-2 hidden-xs">Date de naissance</label>
+                            <div class="col-xs-6 col-sm-4 col-md-3">
+                                <input data-ng-show="edit" type="date" data-ng-model="adherentCtrl.adherent.date_naissance" id="dateofbirth" placeholder="jj/mm/aaaa" class="form-control" data-ng-required="true">
+                                <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.date_naissance | date:'dd/MM/yyyy'" class="control-label"></label>
+                            </div>
+
+                            <label class="control-label col-sm-2 col-md-1 hidden-xs">Âge</label>
+                            <div class="col-xs-6 col-sm-4 col-md-3">
+                                <label data-ng-bind="adherentCtrl.adherent.age" class="control-label"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mail" class="control-label col-md-2 col-md-offset-2 hidden-xs">Email</label>
+                            <div class="col-md-7">
+                                <input data-ng-show="edit" type="email" data-ng-model="adherentCtrl.adherent.email" id="mail" placeholder="user@example.com" class="form-control" data-ng-required="true">
+                                <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.email" class="control-label"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="adress" class="control-label col-md-2 col-md-offset-2 hidden-xs">Adresse</label>
+                            <div class="col-md-7">
+                                <input data-ng-show="edit" data-ng-model="adherentCtrl.adherent.adresse.ligne1" type="text" id="adress" placeholder="Adresse 1" class="form-control">
+                                <input data-ng-show="edit" data-ng-model="adherentCtrl.adherent.adresse.ligne2" type="text" placeholder="Adresse 2" class="form-control">
+                                <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.adresse.ligne1 + ' ' + adherentCtrl.adherent.adresse.ligne2" class="control-label">Adresse</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div>
+                                <label for="cp" class="control-label col-sm-2 col-md-2 col-md-offset-2 hidden-xs">CP</label>
+                                <div class="col-xs-6 col-sm-4 col-md-3">
+                                    <input data-ng-show="edit" data-ng-model="adherentCtrl.adherent.adresse.codepostal" type="text" id="cp" placeholder="CP" class="form-control">
+                                    <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.adresse.codepostal" class="control-label"></label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="city" class="control-label col-sm-2 col-md-1 hidden-xs">Ville</label>
+                                <div class="col-xs-6 col-sm-4 col-md-3">
+                                    <input data-ng-show="edit" data-ng-model="adherentCtrl.adherent.adresse.ville" type="text" id="city" placeholder="Ville" class="form-control">
+                                    <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.adresse.ville" class="control-label"></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div>
+                                <label for="cotisation" class="control-label col-sm-2 col-md-2 col-md-offset-2 hidden-xs">Cotisation</label>
+                                <div class="col-xs-6 col-sm-4 col-md-3">
+                                    <input data-ng-show="edit" data-ng-model="adherentCtrl.adherent.cotisation.debut" type="date" id="cotisation" placeholder="Cotisation" class="form-control">
+                                    <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.cotisation.debut | date:'dd/MM/yyyy'" class="control-label"></label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2 col-md-1 hidden-xs">Date fin</label>
+                                <div class="col-xs-6 col-sm-4 col-md-3">
+                                    <label data-ng-bind="adherentCtrl.adherent.cotisation.fin | date:'dd/MM/yyyy'" class="control-label"></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cost" class="control-label col-md-2 col-md-offset-2 hidden-xs">Montant</label>
+                            <div class="col-md-7">
+                                <input data-ng-show="edit" type="text" data-ng-model="adherentCtrl.adherent.cotisation.montant" id="cost" placeholder="Montant" class="form-control">
+                                <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.cotisation.montant | currency" class="control-label"></label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-offset-10" data-ng-show="!edit">
+                            <button type="button" class="btn btn-success" data-ng-click="edit=true">Éditer</button>
+                        </div>
+                        <div class="col-md-offset-8" ng-show="edit">
+                            <button type="button" class="btn btn-success" data-ng-click="edit=false; adherentCtrl.editAdherent()">Modifier</button>
+                            <button type="button" class="btn btn-danger" data-ng-click="edit=false">Annuler</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="dataTable col-md-6">
+                <table class="table table-condensed table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-6">
+                                Titre
+                            </th>
+                            <th class="col-xs-6">
+                                Date de l'emprunt
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+	                    <tr data-ng-show="adherentCtrl.empruntsTotaux.length == 0">
+	                        <td colspan="3">Pas d'emprunt</td>
+	                    </tr>
+                        <tr data-ng-repeat="item in adherentCtrl.emprunts">
+                            <td data-ng-bind="item.media.titre"></td>
+                            <td data-ng-bind="item.depart | date:'dd/MM/yyyy'"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="paginate">
+	            <ul class="pagination" data-ng-hide="adherentCtrl.empruntsTotaux.length == 0">
+	                <li>
+	                    <a data-ng-click="adherentCtrl.changePageEmprunt(adherentCtrl.pageEmprunt - 1)" aria-label="Previous">
+	                        <span aria-hidden="true">&laquo;</span>
+	                    </a>
+	                </li>
+	                <li data-ng-repeat="pageEmprunt in adherentCtrl.pagesEmpruntPossibles" data-ng-class="{active:pageEmprunt==adherentCtrl.pageEmprunt}"><a data-ng-click="adherentCtrl.changePageEmprunt(pageEmprunt)" data-ng-bind="pageEmprunt + 1"></a></li>
+	                <li>
+	                    <a data-ng-click="adherentCtrl.changePageEmprunt(adherentCtrl.pageEmprunt + 1)" aria-label="Next">
+	                        <span aria-hidden="true">&raquo;</span>
+	                    </a>
+	                </li> 
+	            </ul>
+	        </div>
+            <form class="form-inline" data-ng-submit="adherentCtrl.addEmprunteur()">
+                <fieldset>
+                    <!-- <legend>title or explanatory caption</legend> -->
+                    <div class="form-group">
+                        <label for="title" class="hidden-xs hidden-sm hidden-md">Titre</label>
+                        <select class="form-control" 
+								data-ng-model="adherentCtrl.ajout.selected"
+								data-ng-options="media as media.titre for media in adherentCtrl.mediasDisponibles">
+						</select>
+                    </div>
+					<div class="form-group">
+                        <label for="date" class="hidden-xs hidden-sm hidden-md">Emprunt</label>
+                        <input type="date" data-ng-model="adherentCtrl.ajout.date" id="date" class="form-control startDate" data-ng-required="true">
+                    </div>
+                    <input type="submit" name="submit" value="Ajouter" class="btn btn-success">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</main>

@@ -7,5 +7,5 @@ import fr.iocean.application.media.model.Media;
 
 @Repository
 public interface MediaRepository extends JpaRepository<Media, Long> {
-	
+
 }

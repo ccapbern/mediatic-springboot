@@ -75,11 +75,11 @@ public class MediaIT extends IntegrationTest {
 				+ "------------------------------------------------------------------------------");
 		Media m = mediaService.findById(20L);
 		this.mockMvc.perform(get("/api/medias")).andDo(MockMvcResultHandlers.print())
-				.andExpect(jsonPath("$", hasSize(5))).andExpect(status().isOk());
+				.andExpect(jsonPath("$", hasSize(4))).andExpect(status().isOk());
 		this.mockMvc.perform(delete("/api/medias/20").contentType(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
 				.content(jsonHelper.serialize(m))).andExpect(status().isOk());
 		this.mockMvc.perform(get("/api/medias")).andDo(MockMvcResultHandlers.print())
-				.andExpect(jsonPath("$", hasSize(4))).andExpect(status().isOk());
+				.andExpect(jsonPath("$", hasSize(3))).andExpect(status().isOk());
 	}
 
 }

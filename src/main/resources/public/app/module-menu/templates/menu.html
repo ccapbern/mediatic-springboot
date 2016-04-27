@@ -1,0 +1,31 @@
+﻿<!-- Menu -->
+<nav class="navbar navbar-inverse" ng-controller="MenuController as menuCtrl">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav col-sr-2 col-md-4">
+                        <li class="linavbar" data-ng-class="{active:menuCtrl.isMediaActif()}">
+                            <a href="#/media">Media</a>
+                        </li>
+                        <li class="linavbar" data-ng-class="{active:menuCtrl.isAdherentActif()}">
+                            <a href="#/adherent">Adherent</a>
+                        </li>
+                    </ul>
+                    <!-- right side of the navbar : login -->
+                    <div class="col-sr-6 col-md-8 user-control">
+                        <div class="navbar-text navbar-right ">
+                            <a class="navbar-link"><span class="glyphicon glyphicon-user hidden-xs"></span></a>
+                            <a class="navbar-link" data-ng-bind="menuCtrl.getLogin()"></a>
+                            <a class="navbar-link" data-ng-click="menuCtrl.deconnexion()"><span class="glyphicon glyphicon-off"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>

@@ -1,6 +1,8 @@
 # Project
 app/node_modules/
-app/bower_components/
+**/node_modules/*
+**/bower_components/*
+src/main/resources/public/app/bower_components/
 *.log
 
 # Eclipse specific
