@@ -48,7 +48,7 @@ public class MemberIT extends IntegrationTest {
 
     @Test
     public void testFindOne() throws Exception {
-        this.mockMvc.perform(get("/api/members/1")).andDo(MockMvcResultHandlers.print())
+        this.mockMvc.perform(get("/api/members/-1")).andDo(MockMvcResultHandlers.print())
                 .andExpect(jsonPath("$.firstname").value("toto")).andExpect(status().isOk());
     }
 

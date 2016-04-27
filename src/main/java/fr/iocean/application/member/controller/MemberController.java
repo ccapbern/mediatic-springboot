@@ -1,5 +1,6 @@
 package fr.iocean.application.member.controller;
 
+import fr.iocean.application.exception.EntityNotFoundException;
 import fr.iocean.application.member.model.Member;
 import fr.iocean.application.member.service.MemberService;
 import javassist.NotFoundException;
@@ -27,7 +28,11 @@ public class MemberController {
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public Member findById(@PathVariable Long id) {
-        return memberService.findOne(id);
+        Member member =  memberService.findOne(id);
+        if (member == null) {
+            throw new EntityNotFoundException();
+        }
+        return member;
     }
 
     @RequestMapping(method = RequestMethod.POST)
