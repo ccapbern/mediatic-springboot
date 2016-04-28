@@ -5,8 +5,8 @@
                 <th ng-click="adherentCtrl.triAdherents('id')">Identifiant</th>
                 <th ng-click="adherentCtrl.triAdherents('nom')">Nom</th>
                 <th>Date de naissance</th>
-                <th>Livres empruntÃ©s</th>
-                <th>Cotisation Ã  jour</th>
+                <th>Livres empruntés</th>
+                <th>Cotisation à jour</th>
             </tr>
         </thead>
         <tbody>
@@ -15,7 +15,7 @@
                 <td data-ng-bind="adherent.firstname + ' ' + adherent.lastname"></td>
                 <td data-ng-bind="adherent.dob | date:'dd/MM/yyyy'"></td>
                 <td data-ng-bind="adherent.emprunt.length"></td>
-                <td><input type="checkbox" data-ng-model="adherent.cotisation_correcte" data-ng-disabled="true"/></td>
+                <td><input type="checkbox" data-ng-model="adherent.subscription_ok" data-ng-disabled="true"/></td>
             </tr>
         </tbody>
     </table>

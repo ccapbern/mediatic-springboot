@@ -1,9 +1,11 @@
 package fr.iocean.application.member.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.iocean.application.exception.EntityNotFoundException;
 import fr.iocean.application.member.model.Member;
 import fr.iocean.application.member.service.MemberService;
-import javassist.NotFoundException;
+import fr.iocean.application.pojo.Pages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,6 +26,16 @@ public class MemberController {
     @RequestMapping( method = RequestMethod.GET)
     public List<Member> findAll() {
         return memberService.findAll();
+    }
+
+    @RequestMapping(value = "size", method = RequestMethod.GET)
+    public String findPages() throws JsonProcessingException {
+        Pages pages = new Pages();
+        pages.setPages(5);
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        return mapper.writeValueAsString(pages);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
