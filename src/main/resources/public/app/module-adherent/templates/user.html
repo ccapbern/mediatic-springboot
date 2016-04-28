@@ -12,8 +12,8 @@
         <tbody>
             <tr data-ng-repeat="adherent in adherentCtrl.getAdherents()" data-ng-click="adherentCtrl.showAdherent(adherent.id)">
                 <td data-ng-bind="adherent.id"></td>
-                <td data-ng-bind="adherent.nom + ' ' + adherent.prenom"></td>
-                <td data-ng-bind="adherent.date_naissance | date:'dd/MM/yyyy'"></td>
+                <td data-ng-bind="adherent.firstname + ' ' + adherent.lastname"></td>
+                <td data-ng-bind="adherent.dob | date:'dd/MM/yyyy'"></td>
                 <td data-ng-bind="adherent.emprunt.length"></td>
                 <td><input type="checkbox" data-ng-model="adherent.cotisation_correcte" data-ng-disabled="true"/></td>
             </tr>

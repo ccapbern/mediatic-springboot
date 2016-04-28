@@ -42,6 +42,7 @@
         var updateAdherents = function(page) {
         	AdherentService.getAdherents(page).then(function (response) {
                 adherents = response;
+                console.log(adherents);
             }, function () {
                 adherents = -1;
             });

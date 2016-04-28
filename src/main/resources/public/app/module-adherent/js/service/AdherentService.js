@@ -11,8 +11,8 @@
         
         self.getAdherents = function (page) {
             self.updated = false;
-            filtres.page = page;
-            var url = "http://10.34.10.140:8080/resource/adherent.recherche";
+            //filtres.page = page;
+            var url = "http://localhost:8080/api/members";
             var promise = $http.get(url, {params:filtres}).then(function (response) {
                 return response.data;
             });
@@ -30,7 +30,7 @@
         };
 
         self.getAdherentsActifs = function () {
-            var url = "http://10.34.10.140:8080/resource/adherent.recherche";
+            var url = "http://localhost:8080/members";
             var promise = $http.get(url).then(function (response) {
                 var adherentsActifs = [];
                 for (var i = 0; i < response.data.length; i++) {
@@ -46,7 +46,7 @@
         };
 
         self.getAdherent = function (id) {
-            var url = "http://10.34.10.140:8080/resource/adherent.accession";
+            var url = "http://localhost:8080/api/members";
             var promise = $http.get(url, {params: {id: id}}).then(function (response) {
                 var data = response.data;
                 data.date_naissance = new Date(data.date_naissance);
@@ -61,7 +61,7 @@
         };
 
         self.addAdherent = function (adherent) {
-            var url = "http://10.34.10.140:8080/resource/adherent.creation";
+            var url = "http://localhost:8080/api/members";
             var promise = $http.post(url, adherent).then(function (response) {
                 return response.data;
             });
@@ -81,7 +81,7 @@
         };
         
         self.editAdherent = function editAdherent(adherent) {
-        	var url = "http://10.34.10.140:8080/resource/adherent.modification";
+        	var url = "http://localhost:8080/api/members";
         	var promise = $http.post(url, adherent).then(function (response) {
         		return response.data;
         	}, function (response) {
