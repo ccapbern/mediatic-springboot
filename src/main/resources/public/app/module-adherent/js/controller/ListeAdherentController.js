@@ -41,8 +41,21 @@
         
         var updateAdherents = function(page) {
         	AdherentService.getAdherents(page).then(function (response) {
+                console.log(response);
+
+                response.forEach(function(element, index, array) {
+                    console.log(element);
+                    end_subscription = new Date(element.subscription_date);
+                    end_subscription.setFullYear(end_subscription.getFullYear() + 1);
+
+                    if(new Date() < end_subscription) {
+                        element.subscription_ok = true;
+                    } else {
+                        element.subscription_ok = false;
+                    }
+                });
+
                 adherents = response;
-                console.log(adherents);
             }, function () {
                 adherents = -1;
             });
@@ -55,7 +68,7 @@
         	}, function () {
         		adherents = -1;
         	});
-        }
+        };
         
         updateAdherents(myCtrl.page);
 

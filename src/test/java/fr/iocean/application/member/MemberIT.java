@@ -36,7 +36,7 @@ public class MemberIT extends IntegrationTest {
         m.setLastname("l asticot");
         m.setDob(sdf.parse("2001/10/05"));
         m.setEmail("coco@gmail.com");
-        m.setAddress("route de Kaamelott");
+        m.setAddress1("route de Kaamelott");
         m.setCity("Kaamelott");
 
 

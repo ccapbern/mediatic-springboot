@@ -9,16 +9,17 @@
                         <div class="form-group">
                             <label for="name" class="control-label col-md-2 col-md-offset-2 hidden-xs">Nom</label>
                             <div class="col-md-7">
-                                <input data-ng-show="edit" type="text" data-ng-model="adherentCtrl.adherent.nom" id="name" placeholder="Nom" class="form-control" data-ng-required="true">
-                                <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.prenom + ' ' + adherentCtrl.adherent.nom" class="control-label"></label>
+                                <input data-ng-show="edit" type="text" data-ng-model="adherentCtrl.adherent.firstname" id="firstname" placeholder="Nom" class="form-control" data-ng-required="true">
+                                <input data-ng-show="edit" type="text" data-ng-model="adherentCtrl.adherent.lastname" id="lastname" placeholder="Nom" class="form-control" data-ng-required="true">
+                                <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.firstname + ' ' + adherentCtrl.adherent.lastname" class="control-label"></label>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="dateofbirth" class="control-label col-sm-2 col-md-2 col-md-offset-2 hidden-xs">Date de naissance</label>
                             <div class="col-xs-6 col-sm-4 col-md-3">
-                                <input data-ng-show="edit" type="date" data-ng-model="adherentCtrl.adherent.date_naissance" id="dateofbirth" placeholder="jj/mm/aaaa" class="form-control" data-ng-required="true">
-                                <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.date_naissance | date:'dd/MM/yyyy'" class="control-label"></label>
+                                <input data-ng-show="edit" type="date" data-ng-model="adherentCtrl.adherent.dob" id="dateofbirth" placeholder="jj/mm/aaaa" class="form-control" data-ng-required="true">
+                                <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.dob | date:'dd/MM/yyyy'" class="control-label"></label>
                             </div>
 
                             <label class="control-label col-sm-2 col-md-1 hidden-xs">Âge</label>
@@ -38,9 +39,9 @@
                         <div class="form-group">
                             <label for="adress" class="control-label col-md-2 col-md-offset-2 hidden-xs">Adresse</label>
                             <div class="col-md-7">
-                                <input data-ng-show="edit" data-ng-model="adherentCtrl.adherent.adresse.ligne1" type="text" id="adress" placeholder="Adresse 1" class="form-control">
-                                <input data-ng-show="edit" data-ng-model="adherentCtrl.adherent.adresse.ligne2" type="text" placeholder="Adresse 2" class="form-control">
-                                <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.adresse.ligne1 + ' ' + adherentCtrl.adherent.adresse.ligne2" class="control-label">Adresse</label>
+                                <input data-ng-show="edit" data-ng-model="adherentCtrl.adherent.address1" type="text" id="adress" placeholder="Adresse 1" class="form-control">
+                                <input data-ng-show="edit" data-ng-model="adherentCtrl.adherent.address2" type="text" placeholder="Adresse 2" class="form-control">
+                                <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.address1 + ' ' + adherentCtrl.adherent.address2" class="control-label">Adresse</label>
                             </div>
                         </div>
 
@@ -48,16 +49,16 @@
                             <div>
                                 <label for="cp" class="control-label col-sm-2 col-md-2 col-md-offset-2 hidden-xs">CP</label>
                                 <div class="col-xs-6 col-sm-4 col-md-3">
-                                    <input data-ng-show="edit" data-ng-model="adherentCtrl.adherent.adresse.codepostal" type="text" id="cp" placeholder="CP" class="form-control">
-                                    <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.adresse.codepostal" class="control-label"></label>
+                                    <input data-ng-show="edit" data-ng-model="adherentCtrl.adherent.zipcode" type="text" id="cp" placeholder="CP" class="form-control">
+                                    <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.zipcode" class="control-label"></label>
                                 </div>
                             </div>
 
                             <div>
                                 <label for="city" class="control-label col-sm-2 col-md-1 hidden-xs">Ville</label>
                                 <div class="col-xs-6 col-sm-4 col-md-3">
-                                    <input data-ng-show="edit" data-ng-model="adherentCtrl.adherent.adresse.ville" type="text" id="city" placeholder="Ville" class="form-control">
-                                    <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.adresse.ville" class="control-label"></label>
+                                    <input data-ng-show="edit" data-ng-model="adherentCtrl.adherent.city" type="text" id="city" placeholder="Ville" class="form-control">
+                                    <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.city" class="control-label"></label>
                                 </div>
                             </div>
                         </div>
@@ -66,8 +67,8 @@
                             <div>
                                 <label for="cotisation" class="control-label col-sm-2 col-md-2 col-md-offset-2 hidden-xs">Cotisation</label>
                                 <div class="col-xs-6 col-sm-4 col-md-3">
-                                    <input data-ng-show="edit" data-ng-model="adherentCtrl.adherent.cotisation.debut" type="date" id="cotisation" placeholder="Cotisation" class="form-control">
-                                    <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.cotisation.debut | date:'dd/MM/yyyy'" class="control-label"></label>
+                                    <input data-ng-show="edit" data-ng-model="adherentCtrl.adherent.subscription_date" type="date" id="cotisation" placeholder="Cotisation" class="form-control">
+                                    <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.subscription_date | date:'dd/MM/yyyy'" class="control-label"></label>
                                 </div>
                             </div>
 
@@ -82,8 +83,8 @@
                         <div class="form-group">
                             <label for="cost" class="control-label col-md-2 col-md-offset-2 hidden-xs">Montant</label>
                             <div class="col-md-7">
-                                <input data-ng-show="edit" type="text" data-ng-model="adherentCtrl.adherent.cotisation.montant" id="cost" placeholder="Montant" class="form-control">
-                                <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.cotisation.montant | currency" class="control-label"></label>
+                                <input data-ng-show="edit" type="text" data-ng-model="adherentCtrl.adherent.subscription_amount" id="cost" placeholder="Montant" class="form-control">
+                                <label data-ng-show="!edit" data-ng-bind="adherentCtrl.adherent.subscription_amount | currency" class="control-label"></label>
                             </div>
                         </div>
 

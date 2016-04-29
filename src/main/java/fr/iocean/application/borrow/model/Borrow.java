@@ -1,25 +1,20 @@
 package fr.iocean.application.borrow.model;
 
-import java.io.Serializable;
-import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-
 import fr.iocean.application.media.model.Media;
 import fr.iocean.application.member.model.Member;
+import fr.iocean.application.persistence.IoEntity;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name = "borrow")
-public class Borrow implements Serializable {
+@Getter
+@Setter
+public class Borrow implements IoEntity {
 
 	private static final long serialVersionUID = 1L;
 
@@ -44,67 +39,4 @@ public class Borrow implements Serializable {
 
     @Temporal(TemporalType.DATE)
     private Date return_date;
-
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @return the member_id
-     */
-    public Member getMember() {
-        return member;
-    }
-
-    /**
-     * @param member the member_id to set
-     */
-    public void setMember(Member member) {
-        this.member = member;
-    }
-
-    /**
-     * @return the media_id
-     */
-    public Media getMedia() {
-        return media;
-    }
-
-    /**
-     * @param media the member_id to set
-     */
-    public void setMedia(Media media) {
-        this.media = media;
-    }
-
-    /**
-     * @return the borrowing_date
-     */
-    public Date getBorrowing_date() {
-        return borrowing_date;
-    }
-
-    /**
-     * @param borrowing_date the borrowing_date to set
-     */
-    public void setBorrowing_date(Date borrowing_date) {
-        this.borrowing_date = borrowing_date;
-    }
-
-    /**
-     * @return the return_date
-     */
-    public Date getReturn_date() {
-        return return_date;
-    }
-
-    /**
-     * @param return_date the return_date to set
-     */
-    public void setReturn_date(Date return_date) {
-        this.return_date = return_date;
-    }
 }

@@ -1,8 +1,5 @@
 package fr.iocean.application.member.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import fr.iocean.application.borrow.model.Borrow;
 import fr.iocean.application.persistence.IoEntity;
 import fr.iocean.application.utils.CalendarUtil;
 import lombok.*;
@@ -12,7 +9,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "member")
@@ -42,7 +38,9 @@ public class Member implements IoEntity {
 
     @NotBlank
     private String email;
-    private String address;
+    private String address1;
+    private String address2;
+    private String zipcode;
     private String city;
 
     @Temporal(TemporalType.DATE)
