@@ -1,11 +1,11 @@
-﻿<div class="container-fluid">
+<div class="container-fluid">
     <main class="reduce">
         <table class="table table-condensed table-bordered table-striped table-hover">
             <thead>
                 <tr>
                     <th></th>
-                    <th data-ng-click="mediaCtrl.triMedia('titre')">Titre</th>
-                    <th data-ng-click="mediaCtrl.triMedia('auteur')">Auteur</th>
+                    <th data-ng-click="mediaCtrl.triMedia('title')">Titre</th>
+                    <th data-ng-click="mediaCtrl.triMedia('author')">Auteur</th>
                     <th>Emprunteur</th>
                     <th>Retour</th>
                 </tr>
@@ -13,10 +13,10 @@
             <tbody>
                 <tr data-ng-repeat="media in mediaCtrl.getMedias()" data-ng-click="mediaCtrl.showMedia(media.id)">
                     <td data-my-type="media.type"></td>
-                    <td data-ng-bind="media.titre"></td>
-                    <td data-ng-bind="media.auteur"></td>
-                    <td data-ng-bind="media.emprunteur.nom + ' ' + media.emprunteur.prenom"></td>
-                    <td data-ng-bind="media.retour | date:'dd/MM/yyyy'"></td>
+                    <td data-ng-bind="media.title"></td>
+                    <td data-ng-bind="media.author"></td>
+                    <td data-ng-bind="media.emprunteur.lastname + ' ' + media.emprunteur.firstname"></td>
+                    <td data-ng-bind="media.return_date | date:'dd/MM/yyyy'"></td>
                 </tr>
             </tbody>
         </table>

@@ -11,18 +11,22 @@
 
         self.getMedias = function (page) {
             self.updated = false;
-            filtres.page = page;
-            var url = "http://localhost:8080/api/medias";
-            var promise = $http.get(url, {params:filtres}).then(function (response) {
-                return response.data;
+            //filtres.page = page;
+            var url = "http://localhost:8080/api/medias" /*/page/" + page*/;
+            console.log("getMedias(page)" + page);
+            var promise = $http.get(url).then(function (response) {
+            	console.log(response.data);
+            	return response.data;
             });
             
             return promise;
         };
         
         self.getNbPageMedias = function () {
-            var url = "http://localhost:8080/api/medias";
-            var promise = $http.get(url, {params:filtres}).then(function (response) {
+            var url = "http://localhost:8080/api/medias/nbpages";
+            console.log("getNbPageMedias");
+            var promise = $http.get(url).then(function (response) {
+            	console.log(response.data);
                 return response.data.pages;
             });
             
@@ -46,8 +50,9 @@
         };
 
         self.getMedia = function (id) {
-            var url = "http://localhost:8080/api/medias";
-            var promise = $http.get(url, {params: {id: id}}).then(function (response) {
+            var url = "http://localhost:8080/api/medias/" + id;
+            var promise = $http.get(url).then(function (response) {
+            	console.log(response.data);
                 return response.data;
             });
 
@@ -56,7 +61,9 @@
 
         self.addMedia = function (media) {
             var url = "http://localhost:8080/api/medias";
+            console.log("addMedia");
             var promise = $http.post(url, media).then(function (response) {
+            	console.log(response.data);
                 return response.data;
             });
             

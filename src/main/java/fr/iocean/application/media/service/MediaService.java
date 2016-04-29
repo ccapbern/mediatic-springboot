@@ -14,44 +14,51 @@ import fr.iocean.application.media.repository.MediaRepository;
 
 @Service
 public class MediaService {
-	
-	private static final int PAGE_SIZE = 10;
-	
+
+	private static final int PAGE_SIZE = 2;
+
 	@Autowired
 	MediaRepository mediaRepository;
 
-	public void save(Media media){
+	public Page<Media> getPageMedias(Integer pageNumber) {
+		PageRequest request = new PageRequest(pageNumber, PAGE_SIZE/*, Sort.Direction.DESC, "title"*/);
+		Page<Media>res = mediaRepository.findAll(request);
+		System.out.println("\n\n\n");
+		System.out.println(res);
+		System.out.println("\n\n\n");
+		return res;
+	}
+	
+	public int getNbPageMedias(){
+		return 3;
+	}
+
+	public void save(Media media) {
 		mediaRepository.save(media);
 	}
-	
-	public List<Media> findAll(){
+
+	public List<Media> findAll() {
 		return mediaRepository.findAll();
 	}
-	
-	public Media findById(Long id){
+
+	public Media findById(Long id) {
 		return mediaRepository.findOne(id);
 	}
-	
-	public void update(Long id, Media media){
-		if(findById(id) != null){
+
+	public void update(Long id, Media media) {
+		if (findById(id) != null) {
 			mediaRepository.save(media);
 		} else {
 			throw new MediaNotFoundException();
 		}
 	}
-	
-	public void delete(Long id, Media media){
-		if(findById(id) != null){
+
+	public void delete(Long id, Media media) {
+		if (findById(id) != null) {
 			mediaRepository.delete(media);
 		} else {
 			throw new MediaNotFoundException();
 		}
 	}
-	
-	public Page<Media> findAll(int pageNumber) {
-        PageRequest request =
-            new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.DESC, "startTime");
-        return mediaRepository.findAll(request);
-    }
-	
+
 }
