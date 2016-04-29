@@ -1,14 +1,14 @@
 package fr.iocean.application.media.model;
 
-import fr.iocean.application.type.model.Type;
+import fr.iocean.application.persistence.IoEntity;
+import fr.iocean.application.type.model.TypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Entity
 @Table(name = "media")
-public class Media {
+public class Media implements IoEntity {
 
     @Id
     @SequenceGenerator(name = "media_id_sequence", sequenceName = "media_id_sequence", allocationSize = 1)
@@ -32,12 +32,8 @@ public class Media {
     @NotBlank
     private String author;
     
-//    @NotNull
-//    @ManyToOne
-//    @JoinColumn(name = "type_id")
-//    private Type type;
-    
     @NotNull
-    private Long type;
+    @Enumerated(EnumType.STRING)
+    private TypeEnum type;
     
 }

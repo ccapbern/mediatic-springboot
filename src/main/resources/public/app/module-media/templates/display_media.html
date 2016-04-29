@@ -7,22 +7,22 @@
                     <div class="form-group">
                         <label for="title" class="control-label col-md-2 col-md-offset-2 hidden-xs">Titre</label>
                         <div class="col-md-7">
-                            <input data-ng-model="mediaCtrl.media.titre" type="text" name="title" id="title" placeholder="Titre" value="Titre" class="form-control"  data-ng-show="edit" data-ng-required="true">
-                            <label class="control-label" ng-bind="mediaCtrl.media.titre" ng-show="!edit"></label>
+                            <input data-ng-model="mediaCtrl.media.title" type="text" name="title" id="title" placeholder="Titre" value="Titre" class="form-control"  data-ng-show="edit" data-ng-required="true">
+                            <label class="control-label" ng-bind="mediaCtrl.media.title" ng-show="!edit"></label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="author" class="control-label col-md-2 col-md-offset-2 hidden-xs">Auteur</label>
                         <div class="col-md-7">
-                            <input data-ng-model="mediaCtrl.media.auteur" type="text" name="author" id="author" placeholder="Auteur" value="Auteur" class="form-control"  data-ng-show="edit" data-ng-required="true">
-                            <label class="control-label" data-ng-bind="mediaCtrl.media.auteur" data-ng-show="!edit"></label>
+                            <input data-ng-model="mediaCtrl.media.author" type="text" name="author" id="author" placeholder="Auteur" value="Auteur" class="form-control"  data-ng-show="edit" data-ng-required="true">
+                            <label class="control-label" data-ng-bind="mediaCtrl.media.author" data-ng-show="!edit"></label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-2 col-md-offset-2 hidden-xs">Type</label>
                         <div class="col-md-7">
                             <select data-ng-model="mediaCtrl.media.type" name="type" class="form-control" data-ng-show="edit">
-                                <option value="Livre">Livre</option>
+                                <option value="LIVRE">LIVRE</option>
                                 <option value="CD">CD</option>
                                 <option value="DVD">DVD</option>
                             </select>
@@ -53,9 +53,9 @@
                         <td colspan="3">Pas d'emprunt</td>
                     </tr>
                     <tr ng-repeat="emprunteur in mediaCtrl.emprunteurs">
-                        <td ng-bind="emprunteur.adherent.prenom + ' ' + emprunteur.adherent.nom"></td>
-                        <td ng-bind="emprunteur.depart | date:'dd / MM / yyyy'"></td>
-                        <td ng-bind="emprunteur.retour | date:'dd / MM / yyyy'"></td>
+                        <td ng-bind="emprunteur.adherent.firstname + ' ' + emprunteur.adherent.lastname"></td>
+                        <td ng-bind="emprunteur.borrowing_date | date:'dd / MM / yyyy'"></td>
+                        <td ng-bind="emprunteur.return_date | date:'dd / MM / yyyy'"></td>
                     </tr>
                 </tbody>
             </table>
@@ -81,12 +81,12 @@
                         <label class="hidden-xs hidden-sm hidden-md">Nom</label>
                         <select class="form-control" 
                                 ng-model="mediaCtrl.ajout.selected"
-                                ng-options="adherent as adherent.nom +  ' ' +  adherent.prenom  for adherent in mediaCtrl.adherentsActifs">
+                                ng-options="adherent as adherent.lastname +  ' ' +  adherent.firstname  for adherent in mediaCtrl.adherentsActifs">
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="date" class="hidden-xs hidden-sm hidden-md">Emprunt</label>
-                        <input type="date" ng-model="mediaCtrl.ajout.date" id="date" class="form-control startDate" required>
+                        <input type="date" ng-model="mediaCtrl.ajout.borrowing_date" id="date" class="form-control startDate" required>
                     </div>
                     <input type="submit" name="submit" value="Ajouter" class="btn btn-success">
                 </fieldset>

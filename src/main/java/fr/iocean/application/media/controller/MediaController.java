@@ -23,14 +23,29 @@ public class MediaController {
 	@Autowired
 	private MediaService mediaService;
 
+	@RequestMapping(value = "/pages/{pageNumber}", method = RequestMethod.GET)
+	public Page<Media> getPageMedias(@PathVariable Integer pageNumber) {
+		System.out.println("\n\n\n");
+		System.out.println("pageNumber : " + pageNumber);
+		System.out.println("\n\n\n");
+		return mediaService.getPageMedias(pageNumber);
+//	    Page<Media> page = mediaService.getPageMedias(pageNumber);
+//
+//	    int current = page.getNumber() + 1;
+//	    int begin = Math.max(1, current - 5);
+//	    int end = Math.min(begin + 10, page.getTotalPages());
+//
+//	    return "deploymentLog";
+	}
+	
+	@RequestMapping(value = "/nbpages", method = RequestMethod.GET)
+	public int getNbPageMedias() {
+		return mediaService.getNbPageMedias();
+	}
+	
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public Media findById(@PathVariable Long id) {
 		return mediaService.findById(id);
-	}
-	
-	@RequestMapping(value = "{page}", method = RequestMethod.GET)
-	public Page<Media> findPage(@PathVariable int page) {
-		return mediaService.findAll(page);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)

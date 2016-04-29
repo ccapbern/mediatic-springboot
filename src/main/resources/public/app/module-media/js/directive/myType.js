@@ -3,7 +3,7 @@
        scope.$watch(attrs.myType, function(value) {
            element.text('');
            
-           if (value === 'Livre') {
+           if (value === 'LIVRE') {
                element.append('<span class="glyphicon glyphicon-book" aria-hidden="true"></span>');
            }
            
