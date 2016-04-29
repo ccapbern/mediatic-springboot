@@ -6,6 +6,7 @@ package fr.iocean.application.user.service;
         import org.springframework.stereotype.Service;
 
         import java.util.List;
+        import java.util.Optional;
 
 @Service
 public class UserService {
@@ -31,5 +32,9 @@ public class UserService {
 
     public void delete(User user) {
         userRepository.delete(user);
+    }
+
+    public Optional<User> findOneByLogin(String login) {
+        return userRepository.findOneByLogin(login);
     }
 }

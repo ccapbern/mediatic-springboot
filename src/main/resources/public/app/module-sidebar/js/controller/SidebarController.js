@@ -32,6 +32,7 @@
     };
     
     self.goMediaCreate = function(){
+        console.log('enter here');
         return $location.path('/media/create');
     };
     

@@ -1,34 +1,62 @@
-﻿angular.module('ModuleLogin').service('LoginService', ['$http', '$rootScope', function ($http, $rootScope) {
-	var self = this;
-	
-	var isConnected = true;
-	var identifiant;
-	
-	self.login = function(login, password){
-		var url = "http://10.34.10.140:8080/resource/connexion.login";
-		identifiant = login;
-		var promise = $http.post(url, {login:login, mdp:password}).then(function (response) {
-            console.log("Connexion réussie");
-            isConnected = true;
-			return response.data;
-        }, function (response){
-        	console.log("Connexion refusée", response);
-            isConnected = false;
-        	return response.data;
+﻿angular.module('ModuleLogin').service('LoginService', ['$http', '$rootScope', '$cookieStore', function ($http, $rootScope, $cookieStore) {
+    var self = this;
+
+    var isConnected = false;
+    var identifiant;
+
+    self.login = function (login, password) {
+        var self = this;
+        var key = btoa(login + ":" + password);
+
+        var url = "http://localhost:8080/api/credential";
+
+        var header = {Authorization: 'Basic ' + key};
+        var config = {headers: header};
+
+        var promise = $http.get(url, config).then(function(response) {
+            if (response.status === 200) {
+                $rootScope.globals = {
+                    currentUser: {
+                        login: login,
+                        key: key
+                    }
+                };
+
+                self.setCredential(key);
+                identifiant = login;
+
+                console.log($rootScope.globals);
+
+                return response.data;
+            }
+        }, function(response) {
+            return response.data;
         });
-		return promise;
-	};
-	
-	$rootScope.isConnected = function(){
-		return isConnected;
-	};
-	
-	self.getLogin = function(){
-		return identifiant;
-	};
-	
-	self.deconnexion = function(){
-		isConnected = false;
-		identifiant = "";
-	}
+    };
+
+    self.setCredential = function (key) {
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + key;
+        $cookieStore.put('globals', $rootScope.globals);
+        isConnected = true;
+    };
+
+    self.clearCredential = function() {
+        $rootScope.globals = {};
+        $cookieStore.remove('globals');
+        $http.defaults.headers.common.Authorization = 'Basic ';
+    };
+
+    $rootScope.isConnected = function () {
+        return $rootScope.globals.currentUser;
+    };
+
+    self.getLogin = function () {
+        return identifiant;
+    };
+
+    self.deconnexion = function () {
+        this.clearCredential();
+        isConnected = false;
+        identifiant = "";
+    }
 }]);

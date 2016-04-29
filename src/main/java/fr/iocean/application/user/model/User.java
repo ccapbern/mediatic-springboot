@@ -1,6 +1,7 @@
 
 package fr.iocean.application.user.model;
 
+import fr.iocean.application.credential.model.Credential;
 import fr.iocean.application.persistence.IoEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "user_")
@@ -30,5 +32,6 @@ public class User implements IoEntity {
     private String password;
     @NotBlank
     private String email;
-    private boolean authorize;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Credential> credentials;
 }
